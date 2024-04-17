@@ -15,15 +15,15 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+body{
+    color: white;
+}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.dark-bg{
+  color: white;
+  background: linear-gradient(to left, #19293a, #020a1d);
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 @layer utilities {
