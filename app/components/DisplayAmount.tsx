@@ -3,14 +3,14 @@ import React from 'react'
 type DisplayAmountProps = {
 
     title:string,
-    amount: number,
-    className: string;
+    number: number,
+    className?: string;
 }
-function DisplayAmount({title, amount} : DisplayAmountProps) {
+function DisplayAmount({title, number,className} : DisplayAmountProps) {
   return (
-    <div>
-      <p className='text-lg m-2'>{title}</p>
-      <p className='text-5xl font-semibold'>${amount}</p>
+    <div className={className}>
+      <p className='text-lg text-slate-200 m-2'>{title}</p>
+      <p className='text-5xl text-slate-300 font-semibold'>${number}</p>
     </div>
   )
 }
