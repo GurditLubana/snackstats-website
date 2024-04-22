@@ -6,7 +6,7 @@ import BarGraphSection from "../components/BarGraphSection";
 
 function Dashboard() {
   return (
-    <div className="dark-bg grid min-h-screen grid-rows-[auto,1fr,auto] grid-cols-1 md:grid-cols-4 md:grid-rows-[auto,1fr] gap-4 p-4">
+    <div className="dark-bg grid min-h-screen grid-rows-[0.2fr,3fr,2fr] grid-cols-1 md:grid-cols-4 md:grid-rows-[0.2fr,3fr,2fr] gap-2 p-4">
       <Header/>
       <TotalExpensesSection/>
       <BarGraphSection/>

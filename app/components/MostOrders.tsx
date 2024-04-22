@@ -12,7 +12,7 @@ import {
   ChartData,
 } from "chart.js";
 
-function MostSpent() {
+function MostOrders() {
   
   ChartJS.register(
     CategoryScale,
@@ -37,7 +37,7 @@ function MostSpent() {
       },
       title: {
         display: true,
-        text: "Favourite Restaurants",
+        text: "Most number of orders",
       },
     },
   };
@@ -64,4 +64,4 @@ function MostSpent() {
   );
 }
 
-export default MostSpent;
+export default MostOrders;
