@@ -26,6 +26,13 @@ body{
   min-height: 100vh;
 }
 
+.first, .second, .third{
+
+  height: 40px;
+  background-color: purple;
+  width: 300px;
+  margin: 10px;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
