@@ -6,7 +6,7 @@ function SelectMonth() {
     <div>
       <Select.Root size="3" defaultValue="Select a Month">
         <Select.Trigger color="purple" />
-        <Select.Content highContrast color="purple" variant="solid">
+        <Select.Content highContrast color="indigo" variant="solid">
           <Select.Item disabled value="Select a Month">
             Select a Month
           </Select.Item>

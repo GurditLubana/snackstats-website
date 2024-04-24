@@ -2,28 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-body{
-    color: white;
-} */
 
 .dark-bg{
   color: white;
   background: linear-gradient(to left, #19293a, #020a1d);
   min-width: 100vw;
   min-height: 100vh;
+}
+
+.rt-SelectTrigger {
+  color: #ffffff !important;
+  background-color: rgb(255 99 132 / 30%) !important;
+  box-shadow: inset 0 0 0 1px var(--gray-a7);
+  width: 12rem !important;
+}
+
+.rt-SelectTrigger:hover{
+  cursor: pointer;
+}
+
+.monthlyFav .text-5xl.text-slate-300.font-semibold{
+  font-size: 2rem!important;
 }
 
 @layer utilities {
