@@ -1,27 +1,43 @@
+"use client";
 import Link from "next/link";
+import { useState, FormEvent } from "react";
 
 export default function Home() {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted!");
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inputValue }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
+      const data = await response.json();
+      console.log("Server response:", data);
+    } catch (error) {
+      console.error("Failed to send data:", error);
+    }
   };
+
   return (
     <main className="dark-bg flex min-h-screen flex-col items-center justify-between p-24">
-      {/* <input id="inputTag" name="InputTag" type="text" />
-      <Link href = "/dashboard" className="p-3 rounded-xl border-2">View Report</Link> */}
-
-      <input
-        type="text"
-        placeholder="Enter the link"
-        className="p-2 border rounded"
-      />
-      <Link
-        href="/dashboard"
-        className="mt-2 bg-blue-500 text-white p-2 rounded"
-      >
-        View Report
-      </Link>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Enter some text"
+        />
+        <button type="submit">Submit</button>
+      </form>
     </main>
   );
 }

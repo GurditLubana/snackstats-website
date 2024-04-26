@@ -43,7 +43,7 @@ function MostSpent() {
   };
 
   const data: ChartData<"bar"> = {
-    labels: ["Punjab food corner ", "Holy ", "March"],
+    labels: ["Ayini Indian & South Asian Cuisine ", "Holy ", "March"],
     datasets: [
       {
         label: "Monthly Sales",

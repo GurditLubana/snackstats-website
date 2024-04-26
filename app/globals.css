@@ -21,6 +21,9 @@
   cursor: pointer;
 }
 
+input{
+  color: black;
+}
 .monthlyFav .text-5xl.text-slate-300.font-semibold{
   font-size: 2rem!important;
 }
