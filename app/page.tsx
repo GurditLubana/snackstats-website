@@ -22,9 +22,7 @@ export default function Home() {
       if (!sendResponse.ok) {
         throw new Error("Something went wrong");
       }
-
-      const data = await sendResponse.json();
-      // console.log("Server response:", data);
+     
       router.push('/dashboard')
     } catch (error) {
       console.error("Failed to send data:", error);
@@ -39,8 +37,9 @@ export default function Home() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter some text"
+          id="inputElement"
         />
-        <button type="submit" >Submit</button>
+        <button id="submitBtn" type="submit" >Submit</button>
       </form>
     </main>
   );

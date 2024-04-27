@@ -5,11 +5,31 @@ import Header from "../components/Header";
 import BarGraphSection from "../components/BarGraphSection";
 import MonthlyExpenditure from "../components/MonthlyExpenditure";
 
-
 function Dashboard() {
-
   const [reportData, setReportData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [totalAmountDataReport, setTotalAmountReport] = useState({})
+
+  const totalAmountData = (reportDataJson: any) => {
+    const totalAmountSpent = reportDataJson["totalAmountSpent"];
+    const totalOrders = reportDataJson["totalOrders"];
+    const avgOrderCost = parseFloat(totalAmountSpent) / parseFloat(totalOrders);
+    const avgMonthlyCost = parseFloat(totalAmountSpent) / 12;
+    const totalRestaurant = Object.keys(reportDataJson).length - 4;
+    const avgMonthlyOrder = Math.ceil(totalOrders/12);
+    const mostExpensiveMonth = reportDataJson["months"]["mostExpensiveMonth"]["month"]
+
+    var result = {
+      totalAmountSpent: totalAmountSpent.toFixed(2),
+      totalOrders: totalOrders,
+      avgOrderCost: avgOrderCost.toFixed(2),
+      avgMonthlyCost : avgMonthlyCost.toFixed(2),
+      totalRestaurant: totalRestaurant,
+      avgMonthlyOrder: avgMonthlyOrder,
+      mostExpensiveMonth: mostExpensiveMonth
+    };
+
+    return result;
+  };
 
   useEffect(() => {
     const fetchReport = async () => {
@@ -21,26 +41,23 @@ function Dashboard() {
 
         const data = await report.json();
 
-        setReportData(data);
-        console.log("This is the value of the data ", data);
+        let reportDataJson = JSON.parse(data.inputValue);
+        setTotalAmountReport(totalAmountData(reportDataJson));
 
+        console.log(totalAmountDataReport)
+        setReportData(reportDataJson);
       } catch (error) {
         console.log(error);
-
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchReport();
-  }, []); 
-
-  if (loading) return <div>Loading...</div>;
+  }, []);
 
   return (
     <div className="dark-bg grid min-h-screen grid-rows-[0.2fr,2fr,3fr] grid-cols-1 md:grid-cols-4 md:grid-rows-[0.2fr,2fr,3fr] gap-2 p-4">
       <Header />
-      <TotalExpensesSection reportData={reportData} />
+      <TotalExpensesSection reportData={totalAmountDataReport} />
       <BarGraphSection reportData={reportData} />
       <MonthlyExpenditure reportData={reportData} />
     </div>
