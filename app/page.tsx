@@ -1,14 +1,17 @@
 "use client";
-import Link from "next/link";
+
 import { useState, FormEvent } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState<string>("");
+  
+  const router = useRouter();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api", {
+      const sendResponse = await fetch("/api/reportData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -16,12 +19,13 @@ export default function Home() {
         body: JSON.stringify({ inputValue }),
       });
 
-      if (!response.ok) {
+      if (!sendResponse.ok) {
         throw new Error("Something went wrong");
       }
 
-      const data = await response.json();
-      console.log("Server response:", data);
+      const data = await sendResponse.json();
+      // console.log("Server response:", data);
+      router.push('/dashboard')
     } catch (error) {
       console.error("Failed to send data:", error);
     }
@@ -36,7 +40,7 @@ export default function Home() {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter some text"
         />
-        <button type="submit">Submit</button>
+        <button type="submit" >Submit</button>
       </form>
     </main>
   );
