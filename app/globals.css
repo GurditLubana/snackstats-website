@@ -30,8 +30,10 @@ input{
 
 .barGraphImg{
 
-  width: 100% !important;
+  width: 80% !important;
   object-fit: contain!important;
+  height: 90%!important;
+  padding-top: 10px!important;
 }
 
 @layer utilities {

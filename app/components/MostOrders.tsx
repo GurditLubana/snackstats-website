@@ -12,7 +12,7 @@ import {
   ChartData,
 } from "chart.js";
 
-function MostOrders() {
+function MostOrders({reportData}:any) {
   
   ChartJS.register(
     CategoryScale,
@@ -34,23 +34,42 @@ function MostOrders() {
     plugins: {
       legend: {
         position: "right",
+        labels: {
+          font: {
+            size: 20, 
+          },
+        },
       },
       title: {
         display: true,
         text: "Top 3 Favourite Restaurants (By Order Numbers)",
+        font: {
+          size: 20, 
+        },
       },
     },
   };
 
+  let labelsArray: string[] = []
+  let datasetArray: number[] = []
+
+  for (const key in reportData) {
+    if (reportData.hasOwnProperty(key)) {
+      const restr = reportData[key];
+      labelsArray.push(restr.restaurant);
+      datasetArray.push(restr.orderCount);
+    }
+  }
+  
   const data: ChartData<"bar"> = {
-    labels: ["Punjab food corner ", "Holy ", "March"],
+    labels: labelsArray,
     datasets: [
       {
-        label: "Monthly Sales",
-        data: [65, 59, 80],
+        label: "Orders Count",
+        data: datasetArray,
         backgroundColor: "rgba(255, 99, 132, 0.3)",
         borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
+        borderWidth: 0.5,
         barPercentage: 0.5,
         categoryPercentage: 1,
       },
@@ -58,9 +77,9 @@ function MostOrders() {
   };
 
   return (
-    <div className="h-64">
-      <Bar data={data} options={options} />
-    </div>
+    
+      <Bar className="barGraphImg" data={data} options={options} />
+    
   );
 }
 

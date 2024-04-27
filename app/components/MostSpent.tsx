@@ -34,10 +34,18 @@ function MostSpent({reportData}: any) {
     plugins: {
       legend: {
         position: "right",
+        labels: {
+          font: {
+            size: 20, 
+          },
+        },
       },
       title: {
         display: true,
         text: "Top 3 Favourite Restaurants (By Money Spent)",
+        font: {
+          size: 20, 
+        },
       },
     },
   };
@@ -63,14 +71,16 @@ function MostSpent({reportData}: any) {
         borderWidth: 1,
         barPercentage: 0.5,
         categoryPercentage: 1,
+        
       },
     ],
+    
   };
 
   return (
-    <div className="h-64">
+    
       <Bar className="barGraphImg" data={data} options={options} />
-    </div>
+    
   );
 }
 
