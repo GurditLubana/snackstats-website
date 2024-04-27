@@ -43,8 +43,6 @@ function Dashboard() {
 
         let reportDataJson = JSON.parse(data.inputValue);
         setTotalAmountReport(totalAmountData(reportDataJson));
-
-        console.log(totalAmountDataReport)
         setReportData(reportDataJson);
       } catch (error) {
         console.log(error);

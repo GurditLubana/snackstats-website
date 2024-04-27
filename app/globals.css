@@ -28,6 +28,12 @@ input{
   font-size: 2rem!important;
 }
 
+.barGraphImg{
+
+  width: 100% !important;
+  object-fit: contain!important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

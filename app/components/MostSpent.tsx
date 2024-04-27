@@ -12,7 +12,7 @@ import {
   ChartData,
 } from "chart.js";
 
-function MostSpent() {
+function MostSpent({reportData}: any) {
   
   ChartJS.register(
     CategoryScale,
@@ -37,17 +37,27 @@ function MostSpent() {
       },
       title: {
         display: true,
-        text: "Favourite Restaurants",
+        text: "Top 3 Favourite Restaurants (By Money Spent)",
       },
     },
   };
+  let labelsArray: string[] = []
+  let datasetArray: number[] = []
+
+  for (const key in reportData) {
+    if (reportData.hasOwnProperty(key)) {
+      const restr = reportData[key];
+      labelsArray.push(restr.restaurant);
+      datasetArray.push(restr.amountSpent);
+    }
+  }
 
   const data: ChartData<"bar"> = {
-    labels: ["Ayini Indian & South Asian Cuisine ", "Holy ", "March"],
+    labels: labelsArray,
     datasets: [
       {
-        label: "Monthly Sales",
-        data: [65, 59, 80],
+        label: "Amount Spent ($)",
+        data: datasetArray,
         backgroundColor: "rgba(255, 99, 132, 0.3)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
@@ -59,7 +69,7 @@ function MostSpent() {
 
   return (
     <div className="h-64">
-      <Bar data={data} options={options} />
+      <Bar className="barGraphImg" data={data} options={options} />
     </div>
   );
 }

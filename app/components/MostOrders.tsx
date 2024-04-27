@@ -37,7 +37,7 @@ function MostOrders() {
       },
       title: {
         display: true,
-        text: "Most number of orders",
+        text: "Top 3 Favourite Restaurants (By Order Numbers)",
       },
     },
   };
