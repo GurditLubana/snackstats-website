@@ -13,7 +13,7 @@ import {
   ChartData,
 } from "chart.js";
 
-function MonthlyOrderLineGraph() {
+function MonthlyOrderLineGraph({reportData} : any) {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -30,10 +30,18 @@ function MonthlyOrderLineGraph() {
     plugins: {
       legend: {
         position: "top",
+        // labels: {
+        //   font: {
+        //     size: 20, 
+        //   },
+        // },
       },
       title: {
         display: true,
         text: "Monthly Spending",
+        font: {
+          size: 20, 
+        },
       },
     },
     scales: {
@@ -41,12 +49,18 @@ function MonthlyOrderLineGraph() {
         title: {
           display: true,
           text: "Month",
+          font: {
+            size: 20, 
+          },
         },
       },
       y: {
         title: {
           display: true,
           text: "Amount Spent",
+          font: {
+            size: 20, 
+          },
         },
         ticks: {
           callback: function (value) {
@@ -57,28 +71,37 @@ function MonthlyOrderLineGraph() {
     },
   };
 
+  let datasetArray: number[] = []
+  let monthLabel = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ]
+
+  for (var key in monthLabel) {
+    
+    if (reportData && reportData[monthLabel[key]]) {
+
+      const restr = reportData[monthLabel[key]];
+      datasetArray.push(restr['totalAmount']);
+    }
+  }
+  console.log("this is coming from line graph ",datasetArray)
   const data: ChartData<"line"> = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
+    labels: monthLabel,
     datasets: [
       {
-        label: "Monthly Spending",
-        data: [
-          1200, 1500, 1800, 2000, 1700, 1900, 2200, 2100, 1900, 2300, 2000,
-          2500,
-        ],
+        label: "",
+        data: datasetArray,
         backgroundColor: "rgba(255, 99, 132, 0.3)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 3,

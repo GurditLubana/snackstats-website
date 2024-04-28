@@ -15,7 +15,7 @@ function MonthlyExpenditure({reportData}:any) {
   return (
     <div className="md:col-span-4 grid grid-cols-1 md:grid-cols-4 bg-slate-800 gap-9 rounded-xl p-9 shadow-lg">
 
-      <MonthlyOrderLineGraph/>
+      <MonthlyOrderLineGraph reportData = {monthlyStat}/>
       <MonthlyOrderStat reportData = {monthlyStat} averageMonthlyCost = {averageMonthlyCost}/>
       
     </div>

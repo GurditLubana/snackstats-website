@@ -15,7 +15,6 @@ function MonthlyOrderStat({reportData, averageMonthlyCost}: ReportData) {
   useEffect(()=>{
 
     const month = monthSelected.slice(0,3)
-    // console.log(month)
     if(reportData && reportData[month]){
 
       setTotalAmountSpent((reportData[month]['totalAmount']).toFixed(2))
