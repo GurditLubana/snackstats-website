@@ -88,7 +88,7 @@ function MostOrders({ reportData }: any) {
       {
         label: "Orders Count",
         data: datasetArray,
-        backgroundColor: "rgba(79, 70, 229, 0.5)",
+        backgroundColor: "rgba(79, 70, 229, 0.7)",
         borderColor: "rgba(79, 70, 229, 1)",
         borderWidth: 0.5,
         barPercentage: 0.4,

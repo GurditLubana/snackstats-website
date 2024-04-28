@@ -4,8 +4,8 @@
 
 .dark-bg{
   color: white;
-  background: linear-gradient(to left, #19293a, #020a1d);
-  /* background-color: #020a1d; */
+  /* background: linear-gradient(to left, #19293a, #020a1d); */
+  background-color: #020a1d;
   min-width: 100vw;
   min-height: 100vh;
 }
@@ -36,6 +36,18 @@ input{
   height: 90%!important;
   padding-top: 10px!important;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
 
 @layer utilities {
   .text-balance {

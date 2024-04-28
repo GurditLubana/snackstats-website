@@ -1,19 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 type DisplayAmountProps = {
-
-    title:string,
-    value: string,
-    className?: string;
+  title: string,
+  value: string
+  className?: string
 }
 
-function DisplayAmount({title, value,className} : DisplayAmountProps) {
+function DisplayAmount({ title, value }: DisplayAmountProps) {
   return (
-    <div className={className}>
-      <p className='text-lg text-slate-200 m-3'>{title}</p>
-      <p className='text-5xl text-slate-300 font-semibold'>{value}</p>
+    <div className={`transition-all transform hover:scale-105 hover:shadow-lg flex flex-col justify-center items-center p-4 bg-slate-800 rounded-lg`}>
+      <p className='text-md text-slate-300 mb-2'>{title}</p>
+      <p className='text-4xl text-white font-semibold'>{value}</p>
     </div>
-  )
+  );
 }
 
-export default DisplayAmount
+export default DisplayAmount;
