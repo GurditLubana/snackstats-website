@@ -8,7 +8,7 @@ function SelectMonth({ setMonthSelected }: { setMonthSelected: (month: string) =
   };
 
   return (
-    <div>
+    <div className="my-3">
       <Select.Root onValueChange={handleValueChange} size="3" defaultValue="Select a Month">
         <Select.Trigger color="purple" />
         <Select.Content highContrast color="indigo" variant="solid">

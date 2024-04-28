@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="flex flex-col md:flex-row md:col-span-4 space-5 justify-center items-center rounded-xl p-2">
       <Image src={logoImage} alt="Company Logo" height={80} width={80}/>
-      <h1 className="text-7xl font-normal text-center ms-9 md:mt-0">Snack Stats</h1>
+      <h1 className="text-7xl font-serif font-semibold text-center text-blue-100 ms-9 md:mt-0">Snack Stats</h1>
     </div>
   );
 }

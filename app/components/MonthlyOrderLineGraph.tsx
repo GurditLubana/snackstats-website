@@ -13,31 +13,35 @@ import {
   ChartData,
 } from "chart.js";
 
-function MonthlyOrderLineGraph({reportData} : any) {
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
+function MonthlyOrderLineGraph({ reportData }: any) {
   const options: ChartOptions<"line"> = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
+    interaction: {
+      intersect: false,
+      mode: "index",
+    },
     plugins: {
       legend: {
-        position: "top",
-        
+        display: false,
       },
       title: {
         display: true,
         text: "Monthly Spending",
         font: {
-          size: 20, 
+          size: 18,
         },
+        color: "#ffffff",
       },
     },
     scales: {
@@ -46,8 +50,15 @@ function MonthlyOrderLineGraph({reportData} : any) {
           display: true,
           text: "Month",
           font: {
-            size: 20, 
+            size: 16,
           },
+          color: "#ffffff",
+        },
+        ticks: {
+          color: "#ffffff",
+        },
+        grid: {
+          display: false,
         },
       },
       y: {
@@ -55,19 +66,24 @@ function MonthlyOrderLineGraph({reportData} : any) {
           display: true,
           text: "Amount Spent",
           font: {
-            size: 20, 
+            size: 16,
           },
+          color: "#ffffff",
         },
         ticks: {
+          color: "#ffffff",
           callback: function (value) {
             return "$" + value;
           },
+        },
+        grid: {
+          color: "#334155",
         },
       },
     },
   };
 
-  let datasetArray: number[] = []
+  let datasetArray: number[] = [];
   let monthLabel = [
     "Jan",
     "Feb",
@@ -81,41 +97,41 @@ function MonthlyOrderLineGraph({reportData} : any) {
     "Oct",
     "Nov",
     "Dec",
-  ]
+  ];
 
   for (var key in monthLabel) {
-    
     if (reportData && reportData[monthLabel[key]]) {
-
       const restr = reportData[monthLabel[key]];
-      datasetArray.push(restr['totalAmount']);
+      datasetArray.push(restr["totalAmount"]);
     }
   }
-  console.log("this is coming from line graph ",datasetArray)
+  console.log("this is coming from line graph ", datasetArray);
+
   const data: ChartData<"line"> = {
     labels: monthLabel,
     datasets: [
       {
-        label: "",
         data: datasetArray,
-        backgroundColor: "rgba(255, 99, 132, 0.3)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 3,
-        fill: true,
+        backgroundColor: "rgba(79, 70, 229, 0.4)",
+        borderColor: "rgba(79, 70, 229, 1)",
+        borderWidth: 2,
+        tension: 0.3,
+        pointBackgroundColor: "rgba(79, 70, 229, 1)",
+        pointBorderColor: "#ffffff",
+        pointHoverBackgroundColor: "#ffffff",
+        pointHoverBorderColor: "rgba(79, 70, 229, 1)",
+        pointRadius: 4,
+        pointHoverRadius: 8,
+        fill: "start",
       },
     ],
   };
 
   return (
-    <div className="md:col-span-3 col-span-4">
-
-        <Line
-          className="p-9 mx-9"
-          data={data}
-          options={options}
-          width={300}
-          height={150}
-        />
+    <div className="md:col-span-2 col-span-4 flex justify-center ">
+      <div className="w-full h-full ps-9 py-9">
+        <Line data={data} options={options} />
+      </div>
     </div>
   );
 }

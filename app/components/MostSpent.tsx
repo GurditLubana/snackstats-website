@@ -97,7 +97,14 @@ function MostSpent({ reportData }: any) {
     ],
   };
 
-  return <Bar className="barGraphImg" data={data} options={options} />;
+  return (
+    <div className="flex justify-center">
+      <div className="w-4/5">
+      <Bar className="barGraphImg" data={data} options={options} />
+      </div>
+    </div>
+  );
+
 }
 
 export default MostSpent;

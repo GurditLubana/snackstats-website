@@ -12,7 +12,7 @@ import MostOrders from './MostOrders'
   }
   console.log("This is message form bargraph ",reportData, favRestByAmount)
    return (
-    <div className="md:col-span-2 grid grid-rows-2 gap-1 bg-slate-900 rounded-xl pt-9 ps-7 me-6 shadow-lg">
+    <div className="md:col-span-2 grid grid-rows-2 bg-slate-900 rounded-xl pt-9 me-6 shadow-lg">
       <MostSpent reportData = {favRestByAmount}/>
       <MostOrders reportData= {favRestByOrderCount}/>
       
