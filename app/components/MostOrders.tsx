@@ -24,7 +24,7 @@ function MostOrders({reportData}:any) {
   );
 
   const options: ChartOptions<"bar"> = {
-    indexAxis: "y",
+    indexAxis: "x",
     elements: {
       bar: {
         borderWidth: 2,

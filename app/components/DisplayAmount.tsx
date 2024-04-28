@@ -6,6 +6,7 @@ type DisplayAmountProps = {
     value: string,
     className?: string;
 }
+
 function DisplayAmount({title, value,className} : DisplayAmountProps) {
   return (
     <div className={className}>

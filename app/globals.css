@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .dark-bg{
   color: white;
   background: linear-gradient(to left, #19293a, #020a1d);
@@ -24,6 +23,7 @@
 input{
   color: black;
 }
+
 .monthlyFav .text-5xl.text-slate-300.font-semibold{
   font-size: 2rem!important;
 }

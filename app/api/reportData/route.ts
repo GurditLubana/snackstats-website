@@ -3,7 +3,7 @@ import {NextRequest, NextResponse} from 'next/server'
 let data = '';
 export async function POST(request: Request) {
   data = await request.json();
-  console.log(data)
+  // console.log(data)
   return NextResponse.json({data,})
   }
 

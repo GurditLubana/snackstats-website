@@ -24,7 +24,7 @@ function MostSpent({reportData}: any) {
   );
 
   const options: ChartOptions<"bar"> = {
-    indexAxis: "y",
+    indexAxis: "x",
     elements: {
       bar: {
         borderWidth: 2,
@@ -59,6 +59,7 @@ function MostSpent({reportData}: any) {
       datasetArray.push(restr.amountSpent);
     }
   }
+  console.log(labelsArray, datasetArray)
 
   const data: ChartData<"bar"> = {
     labels: labelsArray,
