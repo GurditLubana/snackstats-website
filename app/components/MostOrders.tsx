@@ -1,5 +1,5 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,9 +10,8 @@ import {
   Legend,
   ChartOptions,
   ChartData,
-} from 'chart.js';
+} from "chart.js";
 
-// Registering the components required for the Bar chart
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,10 +21,9 @@ ChartJS.register(
   Legend
 );
 
-// Options for the Bar chart
-const options: ChartOptions<'bar'> = {
+const options: ChartOptions<"bar"> = {
   maintainAspectRatio: true,
-  indexAxis: 'x',
+  indexAxis: "x",
   elements: {
     bar: {
       borderWidth: 2,
@@ -34,53 +32,48 @@ const options: ChartOptions<'bar'> = {
   responsive: true,
   plugins: {
     legend: {
-      display: false, // Unless you need a legend, it's cleaner without it
+      display: false,
     },
     title: {
       display: true,
-      text: 'Top 3 Favourite Restaurants (By Order Numbers)',
-      color: '#ffffff', // Title color
+      text: "Top 3 Favourite Restaurants (By Order Numbers)",
+      color: "#ffffff",
       font: {
-        size: 18, // Adjust the size as needed
-        family: 'Helvetica, Arial, sans-serif', // Use a modern sans-serif font
+        size: 18,
+        family: "Helvetica, Arial, sans-serif",
       },
     },
     tooltip: {
-      backgroundColor: '#333333', // Tooltip background color
-      titleColor: '#ffffff', // Tooltip title color
-      bodyColor: '#ffffff', // Tooltip body color
-      boxPadding: 5, // Padding within tooltip
+      backgroundColor: "#333333",
+      titleColor: "#ffffff",
+      bodyColor: "#ffffff",
+      boxPadding: 5,
     },
   },
   scales: {
     x: {
       grid: {
-        display: false, // Hide X-axis grid lines
+        display: false,
       },
       ticks: {
-        color: '#ccc', // X-axis tick color
-        
+        color: "#ccc",
       },
-      
     },
     y: {
       grid: {
-        color: '#374151', // Y-axis grid line color
+        color: "#374151",
       },
       ticks: {
-        color: '#ccc', // Y-axis tick color
-        // beginAtZero: true, // Begin at zero
+        color: "#ccc",
       },
     },
   },
 };
 
-// Your component function
 function MostOrders({ reportData }: any) {
   let labelsArray: string[] = [];
   let datasetArray: number[] = [];
 
-  // Loop through your reportData and populate the labelsArray and datasetArray
   for (const key in reportData) {
     if (Object.prototype.hasOwnProperty.call(reportData, key)) {
       const restr = reportData[key];
@@ -89,27 +82,22 @@ function MostOrders({ reportData }: any) {
     }
   }
 
-  // Data for the Bar chart
-  const data: ChartData<'bar'> = {
+  const data: ChartData<"bar"> = {
     labels: labelsArray,
     datasets: [
       {
-        label: 'Orders Count',
+        label: "Orders Count",
         data: datasetArray,
-        backgroundColor: 'rgba(79, 70, 229, 0.5)', // A nice shade of indigo
-        borderColor: 'rgba(79, 70, 229, 1)', // Indigo border
+        backgroundColor: "rgba(79, 70, 229, 0.5)",
+        borderColor: "rgba(79, 70, 229, 1)",
         borderWidth: 0.5,
-        barPercentage: 0.4, // Adjusted bar thickness
+        barPercentage: 0.4,
         categoryPercentage: 1,
       },
     ],
   };
 
-  return (
-    <div className="barGraphImg"> {/* You might need to add some styling here */}
-      <Bar  data={data} options={options} />
-    </div>
-  );
+  return <Bar className="barGraphImg" data={data} options={options} />;
 }
 
 export default MostOrders;

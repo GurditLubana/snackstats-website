@@ -12,45 +12,67 @@ import {
   ChartData,
 } from "chart.js";
 
-function MostSpent({reportData}: any) {
-  
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  const options: ChartOptions<"bar"> = {
-    indexAxis: "x",
-    elements: {
-      bar: {
-        borderWidth: 2,
+const options: ChartOptions<"bar"> = {
+  maintainAspectRatio: true,
+  indexAxis: "x",
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: true,
+      text: "Top 3 Favourite Restaurants (By Money Spent)",
+      color: "#ffffff",
+      font: {
+        size: 18,
+        family: "Helvetica, Arial, sans-serif",
       },
     },
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "right",
-        labels: {
-          font: {
-            size: 20, 
-          },
-        },
+    tooltip: {
+      backgroundColor: "#333333",
+      titleColor: "#ffffff",
+      bodyColor: "#ffffff",
+      boxPadding: 5,
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
       },
-      title: {
-        display: true,
-        text: "Top 3 Favourite Restaurants (By Money Spent)",
-        font: {
-          size: 20, 
-        },
+      ticks: {
+        color: "#ccc",
       },
     },
-  };
-  let labelsArray: string[] = []
-  let datasetArray: number[] = []
+    y: {
+      grid: {
+        color: "#374151",
+      },
+      ticks: {
+        color: "#ccc",
+      },
+    },
+  },
+};
+
+function MostSpent({ reportData }: any) {
+  let labelsArray: string[] = [];
+  let datasetArray: number[] = [];
 
   for (const key in reportData) {
     if (reportData.hasOwnProperty(key)) {
@@ -59,7 +81,6 @@ function MostSpent({reportData}: any) {
       datasetArray.push(restr.amountSpent);
     }
   }
-  console.log(labelsArray, datasetArray)
 
   const data: ChartData<"bar"> = {
     labels: labelsArray,
@@ -67,22 +88,16 @@ function MostSpent({reportData}: any) {
       {
         label: "Amount Spent ($)",
         data: datasetArray,
-        backgroundColor: "rgba(255, 99, 132, 0.3)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
-        barPercentage: 0.9,
+        backgroundColor: "rgba(79, 70, 229, 0.5)",
+        borderColor: "rgba(79, 70, 229, 1)",
+        borderWidth: 0.5,
+        barPercentage: 0.4,
         categoryPercentage: 1,
-        
       },
     ],
-    
   };
 
-  return (
-    
-      <Bar className="barGraphImg" data={data} options={options} />
-    
-  );
+  return <Bar className="barGraphImg" data={data} options={options} />;
 }
 
 export default MostSpent;
