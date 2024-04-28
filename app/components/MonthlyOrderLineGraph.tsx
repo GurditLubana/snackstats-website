@@ -30,11 +30,7 @@ function MonthlyOrderLineGraph({reportData} : any) {
     plugins: {
       legend: {
         position: "top",
-        // labels: {
-        //   font: {
-        //     size: 20, 
-        //   },
-        // },
+        
       },
       title: {
         display: true,

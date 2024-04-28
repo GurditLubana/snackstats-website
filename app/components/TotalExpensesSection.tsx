@@ -5,7 +5,7 @@ import DisplayAmount from './DisplayAmount'
 function TotalExpensesSection({reportData}:any) {
   
   return (
-    <div className="flex justify-center items-center md:col-span-2 col-span-1 bg-slate-800 rounded-xl shadow-lg">
+    <div className="flex justify-center items-center md:col-span-2 col-span-1 bg-slate-800 rounded-xl shadow-lg mx-6">
       <div className='grid grid-cols-2 col-gap-9 grid-rows-3 gap-10 p-9'>
       
       <DisplayAmount className={'col-span-4 py-5'} title = {"Total Amount Spent"} value = {"$ " + reportData.totalAmountSpent}></DisplayAmount>

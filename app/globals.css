@@ -5,6 +5,7 @@
 .dark-bg{
   color: white;
   background: linear-gradient(to left, #19293a, #020a1d);
+  /* background-color: #020a1d; */
   min-width: 100vw;
   min-height: 100vh;
 }
