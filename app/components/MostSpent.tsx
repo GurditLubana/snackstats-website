@@ -70,7 +70,7 @@ function MostSpent({reportData}: any) {
         backgroundColor: "rgba(255, 99, 132, 0.3)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
-        barPercentage: 0.5,
+        barPercentage: 0.9,
         categoryPercentage: 1,
         
       },
