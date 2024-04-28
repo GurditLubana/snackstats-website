@@ -1,10 +1,15 @@
 import React from 'react'
 import { Select } from "@radix-ui/themes";
 
-function SelectMonth() {
+
+function SelectMonth({ setMonthSelected }: { setMonthSelected: (month: string) => void }) {
+  const handleValueChange = (value: string) => {
+    setMonthSelected(value);
+  };
+
   return (
     <div>
-      <Select.Root size="3" defaultValue="Select a Month">
+      <Select.Root onValueChange={handleValueChange} size="3" defaultValue="Select a Month">
         <Select.Trigger color="purple" />
         <Select.Content highContrast color="indigo" variant="solid">
           <Select.Item disabled value="Select a Month">
