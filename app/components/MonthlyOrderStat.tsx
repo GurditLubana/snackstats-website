@@ -10,7 +10,8 @@ function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
   const [monthSelected, setMonthSelected] = useState("None");
   const [totalAmountSpent, setTotalAmountSpent] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
-  const [favRest, setfavRest] = useState("Some Random Name");
+  const [favRest, setfavRest] = useState("Select a Month");
+  const[avrgMonth, setAvrgMonth] = useState("0")
 
   useEffect(() => {
     const month = monthSelected.slice(0, 3);
@@ -18,8 +19,9 @@ function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
       setTotalAmountSpent(reportData[month]["totalAmount"].toFixed(2));
       setTotalOrders(reportData[month]["totalOrders"]);
       setfavRest(reportData[month]["favRest"]);
+      setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
     }
-  }, [monthSelected, reportData]);
+  }, [averageMonthlyCost, monthSelected, reportData]);
 
   return (
     <div className="md:col-span-2 col-span-4 flex justify-center p-4 bg-slate-900 rounded-lg shadow">
@@ -35,7 +37,7 @@ function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
         />
         <DisplayAmount
           title="Average Monthly Spent"
-          value={"$ " + averageMonthlyCost.toFixed(2)}
+          value={"$ " + avrgMonth}
         />
         <DisplayAmount
           title="Favourite Restaurant this Month"
