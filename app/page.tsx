@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from 'next/navigation';
+import { Skeleton } from "@radix-ui/themes";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -31,6 +32,8 @@ export default function Home() {
 
   return (
     <main className="dark-bg flex min-h-screen flex-col items-center justify-between p-24">
+      <Skeleton>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -41,6 +44,8 @@ export default function Home() {
         />
         <button id="submitBtn" type="submit" >Submit</button>
       </form>
+
+      </Skeleton>
     </main>
   );
 }
