@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { Skeleton } from "@radix-ui/themes";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState<string>("");
-  
+
   const router = useRouter();
 
   const handleSubmit = async (event: FormEvent) => {
@@ -23,8 +23,8 @@ export default function Home() {
       if (!sendResponse.ok) {
         throw new Error("Something went wrong");
       }
-     
-      router.push('/dashboard')
+
+      router.push("/dashboard");
     } catch (error) {
       console.error("Failed to send data:", error);
     }
@@ -33,18 +33,18 @@ export default function Home() {
   return (
     <main className="dark-bg flex min-h-screen flex-col items-center justify-between p-24">
       <Skeleton>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter some text"
-          id="inputElement"
-        />
-        <button id="submitBtn" type="submit" >Submit</button>
-      </form>
-
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Enter some text"
+            id="inputElement"
+          />
+          <button id="submitBtn" type="submit">
+            Submit
+          </button>
+        </form>
       </Skeleton>
     </main>
   );

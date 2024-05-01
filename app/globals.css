@@ -4,7 +4,6 @@
 
 .dark-bg{
   color: white;
-  /* background: linear-gradient(to left, #19293a, #020a1d); */
   background-color: rgb(2, 10, 29);
   min-width: 100vw;
   min-height: 100vh;
@@ -20,7 +19,7 @@
   cursor: pointer;
 }
 
-.rt-SelectContent {
+.rt-SelectContent{
   color: #ffffff !important;
   background-color: rgb(2, 10, 29,0.8) !important;
   width: 12rem !important;
@@ -34,6 +33,9 @@ input{
   font-size: 2rem!important;
 }
 
+.rt-TableRow{
+  color: white !important;
+}
 .barGraphImg{
 
   width: 100% !important;
