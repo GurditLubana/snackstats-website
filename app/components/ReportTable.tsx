@@ -4,7 +4,7 @@ import { Table } from "@radix-ui/themes";
 
 function ReportTable({reportData}:any) {
   return (
-    <div>
+    <div className=" md:col-span-3 col-span-3 ms-6 bg-slate-800 rounded-lg shadow-lg overflow-hidden my-6">
       <Table.Root className="w-full">
         <Table.Header className="bg-slate-900 text-white">
           <Table.Row>
