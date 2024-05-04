@@ -22,15 +22,16 @@ function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
     if(yearSelected !== 'None'){
       console.log('it is false')
       setDisableMonthDropdown(false);
+
+      if (reportData && reportData[yearSelected]) {
+        setTotalAmountSpent(reportData[yearSelected][month]["totalAmount"].toFixed(2));
+        setTotalOrders(reportData[yearSelected][month]["totalOrders"]);
+        setfavRest(reportData[yearSelected][month]["favRest"]);
+        setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
+        setYearArray(Object.keys(reportData));
+      }
     }
 
-    if (reportData && reportData[month] && reportData['years']) {
-      setTotalAmountSpent(reportData[month]["totalAmount"].toFixed(2));
-      setTotalOrders(reportData[month]["totalOrders"]);
-      setfavRest(reportData[month]["favRest"]);
-      setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
-      setYearArray(Object.keys(reportData['years']));
-    }
   }, [averageMonthlyCost, monthSelected, reportData, yearSelected]);
 
   return (
