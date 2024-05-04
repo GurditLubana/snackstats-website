@@ -84,7 +84,8 @@ function MonthlyOrderLineGraph({ reportData }: any) {
   };
 
   let datasetArray: number[] = [];
-  let monthLabel = [
+  let monthLabels: string[] = [];
+  let monthArray = [
     "Jan",
     "Feb",
     "Mar",
@@ -99,16 +100,29 @@ function MonthlyOrderLineGraph({ reportData }: any) {
     "Dec",
   ];
 
-  for (var key in monthLabel) {
-    if (reportData && reportData[monthLabel[key]]) {
-      const restr = reportData[monthLabel[key]];
-      datasetArray.push(restr["totalAmount"]);
+  if(reportData){
+
+    let yearArray = Object.keys(reportData);
+    
+    for(var year in yearArray){
+      for(var month in monthArray){
+
+        const value = reportData[yearArray[year]][monthArray[month]];
+        if(value.totalAmount > 0){
+          // console.log(value);
+          const monthName = monthArray[month] + " " + yearArray[year];
+          monthLabels.push(monthName);
+          datasetArray.push(value["totalAmount"])
+        }
+      }
     }
+    console.log(monthLabels)
   }
+
   console.log("this is coming from line graph ", datasetArray);
 
   const data: ChartData<"line"> = {
-    labels: monthLabel,
+    labels: monthLabels,
     datasets: [
       {
         data: datasetArray,

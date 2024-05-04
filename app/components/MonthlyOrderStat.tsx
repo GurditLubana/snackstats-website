@@ -19,20 +19,27 @@ function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
 
   useEffect(() => {
     const month = monthSelected.slice(0, 3);
+    
+    if (reportData) {
+
+      setYearArray(Object.keys(reportData));
+
+      if(reportData[yearSelected] && reportData[yearSelected][month] ){
+
+        setTotalAmountSpent(reportData[yearSelected][month]["totalAmount"].toFixed(2));
+        setTotalOrders(reportData[yearSelected][month]["totalOrders"]);
+        setfavRest(reportData[yearSelected][month]["favRest"]);
+        setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
+      }
+    }
+
     if(yearSelected !== 'None'){
       console.log('it is false')
       setDisableMonthDropdown(false);
-    }
-
-    if (reportData && reportData[month] && reportData['years']) {
-      setTotalAmountSpent(reportData[month]["totalAmount"].toFixed(2));
-      setTotalOrders(reportData[month]["totalOrders"]);
-      setfavRest(reportData[month]["favRest"]);
-      setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
-      setYearArray(Object.keys(reportData['years']));
+  
     }
   }, [averageMonthlyCost, monthSelected, reportData, yearSelected]);
-
+  
   return (
     <div className="md:col-span-2 col-span-4 flex justify-center p-4 bg-slate-900 rounded-lg shadow">
       <div className="flex flex-col gap-4">

@@ -14,10 +14,13 @@ function Dashboard() {
     const totalAmountSpent = reportDataJson["totalAmountSpent"];
     const totalOrders = reportDataJson["totalOrders"];
     const avgOrderCost = parseFloat(totalAmountSpent) / parseFloat(totalOrders);
+    // this value needs to be fixed, avgMonthly is no longer divided by 12
     const avgMonthlyCost = parseFloat(totalAmountSpent) / 12;
     const totalRestaurant = Object.keys(reportDataJson).length - 4;
+    // this value needs to be fixed, avgMonthly is no longer divided by 12
     const avgMonthlyOrder = Math.ceil(totalOrders/12);
-    const mostExpensiveMonth = reportDataJson["months"]["mostExpensiveMonth"]["month"]
+    // const mostExpensiveMonth = reportDataJson["months"]["mostExpensiveMonth"]["month"]
+    const mostExpensiveMonth = "January"
 
     var result = {
       totalAmountSpent: totalAmountSpent.toFixed(2),
