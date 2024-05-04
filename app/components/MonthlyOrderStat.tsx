@@ -1,32 +1,44 @@
 import React, { useEffect, useState } from "react";
 import SelectMonth from "./SelectMonth";
 import DisplayAmount from "./DisplayAmount";
+import SelectDropdown from "./SelectDropdown";
 
 interface ReportData {
   reportData: any;
   averageMonthlyCost: number;
 }
 function MonthlyOrderStat({ reportData, averageMonthlyCost }: ReportData) {
+  const [yearSelected, setYearSelected] =useState("None")
   const [monthSelected, setMonthSelected] = useState("None");
+  const [disableMonthDropdown, setDisableMonthDropdown] = useState(true);
   const [totalAmountSpent, setTotalAmountSpent] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
-  const [favRest, setfavRest] = useState("Select a Month");
+  const [favRest, setfavRest] = useState("No Data Available");
   const[avrgMonth, setAvrgMonth] = useState("0")
+  const[yearArray, setYearArray] = useState(["1947", "1984"])
 
   useEffect(() => {
     const month = monthSelected.slice(0, 3);
-    if (reportData && reportData[month]) {
+    if(yearSelected !== 'None'){
+      console.log('it is false')
+      setDisableMonthDropdown(false);
+    }
+
+    if (reportData && reportData[month] && reportData['years']) {
       setTotalAmountSpent(reportData[month]["totalAmount"].toFixed(2));
       setTotalOrders(reportData[month]["totalOrders"]);
       setfavRest(reportData[month]["favRest"]);
       setAvrgMonth((averageMonthlyCost.toFixed(2)).toString())
+      setYearArray(Object.keys(reportData['years']));
     }
-  }, [averageMonthlyCost, monthSelected, reportData]);
+  }, [averageMonthlyCost, monthSelected, reportData, yearSelected]);
 
   return (
     <div className="md:col-span-2 col-span-4 flex justify-center p-4 bg-slate-900 rounded-lg shadow">
       <div className="flex flex-col gap-4">
-        <SelectMonth setMonthSelected={setMonthSelected} />
+
+        <SelectDropdown setMonthSelected={setMonthSelected} setYearSelected={setYearSelected} yearArray ={yearArray} disableMonthDropdown={disableMonthDropdown}/>
+
         <DisplayAmount
           title="Total Amount Spent"
           value={"$ " + totalAmountSpent}
