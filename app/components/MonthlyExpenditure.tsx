@@ -6,16 +6,17 @@ import MonthlyOrderStat from "./MonthlyOrderStat";
 interface MonthlyExpenditureProps{
  
   reportData: any;
+  totalNumMonths: number;
   setTotalNumMonths: (numMonths: number) => void;
   
 }
 
-function MonthlyExpenditure({ reportData, setTotalNumMonths }: MonthlyExpenditureProps) {
+function MonthlyExpenditure({ reportData, totalNumMonths, setTotalNumMonths }: MonthlyExpenditureProps) {
   let yearlyStat = {};
   let averageMonthlyCost = 0;
   if (reportData) {
     yearlyStat = reportData["years"];
-    averageMonthlyCost = parseFloat(reportData["totalAmountSpent"]) / 12;
+    averageMonthlyCost = parseFloat(reportData["totalAmountSpent"]) / totalNumMonths;
   }
 
   return (

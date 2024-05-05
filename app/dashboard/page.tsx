@@ -41,7 +41,6 @@ function Dashboard() {
       avgMonthlyCost : avgMonthlyCost.toFixed(2),
       totalRestaurant: totalRestaurant,
       avgMonthlyOrder: avgMonthlyOrder,
-      // avgMonthlyOrder: totalNumMonths,
       mostExpensiveMonth: mostExpensiveMonth
     };
 
@@ -74,7 +73,7 @@ function Dashboard() {
       <Header />
       <TotalExpensesSection reportData={totalAmountDataReport} />
       <BarGraphSection reportData={reportData} />
-      <MonthlyExpenditure reportData={reportData} setTotalNumMonths={setTotalNumMonths}/>
+      <MonthlyExpenditure reportData={reportData} totalNumMonths={totalNumMonths} setTotalNumMonths={setTotalNumMonths}/>
       <DetailedReport reportData={reportData}/>
     </div>
   );
