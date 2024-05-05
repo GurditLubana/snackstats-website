@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SelectMonth from "./SelectMonth";
 import DisplayAmount from "./DisplayAmount";
 import SelectDropdown from "./SelectDropdown";
 

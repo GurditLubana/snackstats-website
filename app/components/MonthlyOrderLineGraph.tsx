@@ -116,10 +116,8 @@ function MonthlyOrderLineGraph({ reportData }: any) {
         }
       }
     }
-    console.log(monthLabels)
+    
   }
-
-  console.log("this is coming from line graph ", datasetArray);
 
   const data: ChartData<"line"> = {
     labels: monthLabels,

@@ -4,7 +4,7 @@ import { Table } from "@radix-ui/themes";
 
 function ReportTable({reportData}:any) {
   return (
-    <div className=" md:col-span-3 col-span-3 ms-6 bg-slate-800 rounded-lg shadow-lg overflow-hidden my-6">
+    <div className=" md:col-span-2 col-span-2 ms-6 bg-slate-800 rounded-lg shadow-lg overflow-hidden my-6">
       <Table.Root className="w-full">
         <Table.Header className="bg-slate-900 text-white">
           <Table.Row>
@@ -20,7 +20,7 @@ function ReportTable({reportData}:any) {
             .map(([restaurant, data]) => (
               <Table.Row key={restaurant} className="hover:bg-slate-700 transition-colors">
                 <Table.RowHeaderCell className="px-6 py-4 font-medium text-white text-left">{restaurant}</Table.RowHeaderCell>
-                <Table.Cell className="px-6 py-4 text-slate-300 text-center">{"$ "+reportData[restaurant].totalSpent}</Table.Cell>
+                <Table.Cell className="px-6 py-4 text-slate-300 text-center">{"$ "+(reportData[restaurant].totalSpent).toFixed(2)}</Table.Cell>
                 <Table.Cell className="px-6 py-4 text-slate-300 text-center">{reportData[restaurant].visits}</Table.Cell>
               </Table.Row>
             ))}
@@ -31,3 +31,4 @@ function ReportTable({reportData}:any) {
 }
 
 export default ReportTable
+
