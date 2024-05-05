@@ -26,16 +26,16 @@ const RestaurantPieChart: React.FC<RestaurantPieChartProps> = ({
     }
   }
 
-  // Define color palette
+  
   const colors = [
-    "rgba(75, 192, 192, 0.8)",
-    "rgba(54, 162, 235, 0.8)",
-    "rgba(79, 70, 229, 0.8)",
-    "rgba(255, 159, 64, 0.8)",
-    "rgba(255, 99, 132, 0.8)",
-    "rgba(255, 206, 86, 0.8)",
-    "rgba(231, 233, 237, 0.8)",
-    "rgba(201, 203, 207, 0.8)",
+    "rgba(79, 70, 229, 0.8)", 
+    "rgba(135, 206, 235, 0.8)", 
+    "rgba(60, 179, 113, 0.8)", 
+    "rgba(244, 164, 96, 0.8)", 
+    "rgba(221, 160, 221, 0.8)", 
+    "rgba(100, 149, 237, 0.8)", 
+    "rgba(144, 238, 144, 0.8)", 
+    "rgba(255, 160, 122, 0.8)", 
   ];
 
   const borderColors = colors.map((color) => color.replace("0.8", "1"));
