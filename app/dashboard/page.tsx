@@ -9,18 +9,30 @@ import DetailedReport from "../components/DetailedReport";
 function Dashboard() {
   const [reportData, setReportData] = useState({});
   const [totalAmountDataReport, setTotalAmountReport] = useState({})
+  const [totalNumMonths, setTotalNumMonths] = useState(-1)
 
   const totalAmountData = (reportDataJson: any) => {
     const totalAmountSpent = reportDataJson["totalAmountSpent"];
     const totalOrders = reportDataJson["totalOrders"];
     const avgOrderCost = parseFloat(totalAmountSpent) / parseFloat(totalOrders);
-    // this value needs to be fixed, avgMonthly is no longer divided by 12
-    const avgMonthlyCost = parseFloat(totalAmountSpent) / 12;
+    const avgMonthlyCost = parseFloat(totalAmountSpent) / totalNumMonths;
     const totalRestaurant = Object.keys(reportDataJson).length - 4;
-    // this value needs to be fixed, avgMonthly is no longer divided by 12
-    const avgMonthlyOrder = Math.ceil(totalOrders/12);
-    // const mostExpensiveMonth = reportDataJson["months"]["mostExpensiveMonth"]["month"]
-    const mostExpensiveMonth = "January"
+    const avgMonthlyOrder = Math.ceil(totalOrders/totalNumMonths);
+    const yearsArray = Object.keys(reportDataJson['years']);
+    
+    let mostExpensiveMonth = "NaN";
+    let currMaxValue = -1;
+    
+    for(var index in yearsArray ){
+      const currentYear = yearsArray[index];
+      let value = reportDataJson['years'][currentYear]['mostExpensiveMonth']['amountSpent'];
+      let month = reportDataJson['years'][currentYear]['mostExpensiveMonth']['month'];
+      if(value > currMaxValue){
+        currMaxValue = value;
+        mostExpensiveMonth = `${month} ${currentYear}`
+      }
+
+    }
 
     var result = {
       totalAmountSpent: totalAmountSpent.toFixed(2),
@@ -29,6 +41,7 @@ function Dashboard() {
       avgMonthlyCost : avgMonthlyCost.toFixed(2),
       totalRestaurant: totalRestaurant,
       avgMonthlyOrder: avgMonthlyOrder,
+      // avgMonthlyOrder: totalNumMonths,
       mostExpensiveMonth: mostExpensiveMonth
     };
 
@@ -54,14 +67,14 @@ function Dashboard() {
     };
 
     fetchReport();
-  }, []);
+  }, [totalNumMonths]);
 
   return (
     <div className="dark-bg grid min-h-screen grid-rows-[0.1fr,1fr,0.8fr,auto] grid-cols-1 md:grid-cols-4 md:grid-rows-[0.1fr,1fr,0.8fr, auto] gap-2 p-4">
       <Header />
       <TotalExpensesSection reportData={totalAmountDataReport} />
       <BarGraphSection reportData={reportData} />
-      <MonthlyExpenditure reportData={reportData} />
+      <MonthlyExpenditure reportData={reportData} setTotalNumMonths={setTotalNumMonths}/>
       <DetailedReport reportData={reportData}/>
     </div>
   );

@@ -23,7 +23,23 @@ ChartJS.register(
   Legend
 );
 
-function MonthlyOrderLineGraph({ reportData }: any) {
+interface MonthlyOrderLineGraphProps {
+  reportData: any;
+  setTotalNumMonths: (numMonths: number) => void;
+}
+
+function parseDate(dateStr: string, monthMapping: any) {
+  const [monthName, year] = dateStr.split(" ");
+  return {
+    year: parseInt(year, 10),
+    month: monthMapping[monthName],
+  };
+}
+
+function MonthlyOrderLineGraph({
+  reportData,
+  setTotalNumMonths,
+}: MonthlyOrderLineGraphProps) {
   const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -85,38 +101,48 @@ function MonthlyOrderLineGraph({ reportData }: any) {
 
   let datasetArray: number[] = [];
   let monthLabels: string[] = [];
-  let monthArray = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const monthMapping = {
+    Jan: 0,
+    Feb: 1,
+    Mar: 2,
+    Apr: 3,
+    May: 4,
+    Jun: 5,
+    Jul: 6,
+    Aug: 7,
+    Sep: 8,
+    Oct: 9,
+    Nov: 10,
+    Dec: 11,
+  };
 
-  if(reportData){
+  const monthArray = Object.keys(monthMapping);
 
+  if (reportData) {
     let yearArray = Object.keys(reportData);
-    
-    for(var year in yearArray){
-      for(var month in monthArray){
 
+    for (var year in yearArray) {
+      for (var month in monthArray) {
         const value = reportData[yearArray[year]][monthArray[month]];
-        if(value.totalAmount > 0){
-          // console.log(value);
+        if (value.totalAmount > 0) {
           const monthName = monthArray[month] + " " + yearArray[year];
           monthLabels.push(monthName);
-          datasetArray.push(value["totalAmount"])
+          datasetArray.push(value["totalAmount"]);
         }
       }
     }
-    
+
+    const firstDate = parseDate(monthLabels[0], monthMapping);
+    const lastDate = parseDate(
+      monthLabels[monthLabels.length - 1],
+      monthMapping
+    );
+
+    const yearDifference = lastDate.year - firstDate.year;
+    const monthDifference = lastDate.month - firstDate.month;
+    let totalMonthsDifference = yearDifference * 12 + monthDifference;
+    setTotalNumMonths(totalMonthsDifference);
+    console.log(`Total number of months between the first and last date: ${totalMonthsDifference}`);
   }
 
   const data: ChartData<"line"> = {
