@@ -16,7 +16,10 @@ function MonthlyExpenditure({ reportData, totalNumMonths, setTotalNumMonths }: M
   let averageMonthlyCost = 0;
   if (reportData) {
     yearlyStat = reportData["years"];
-    averageMonthlyCost = parseFloat(reportData["totalAmountSpent"]) / totalNumMonths;
+    if(totalNumMonths > 0){
+
+      averageMonthlyCost = parseFloat(reportData["totalAmountSpent"]) / totalNumMonths;
+    }
   }
 
   return (

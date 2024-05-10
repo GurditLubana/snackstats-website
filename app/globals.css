@@ -4,14 +4,14 @@
 
 .dark-bg{
   color: white;
-  background-color: rgb(2, 10, 29);
+  background-color: #020a1d;
   min-width: 100vw;
   min-height: 100vh;
 }
 
 .rt-SelectTrigger {
   color: #ffffff !important;
-  background-color: rgba(79, 70, 229, 0.7) !important;
+  background-color: #4f46e5b3 !important;
   width: 12rem !important;
 }
 

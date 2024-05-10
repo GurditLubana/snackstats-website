@@ -15,9 +15,9 @@ function Dashboard() {
     const totalAmountSpent = reportDataJson["totalAmountSpent"];
     const totalOrders = reportDataJson["totalOrders"];
     const avgOrderCost = parseFloat(totalAmountSpent) / parseFloat(totalOrders);
-    const avgMonthlyCost = parseFloat(totalAmountSpent) / totalNumMonths;
+    const avgMonthlyCost = totalNumMonths > 0 ? parseFloat(totalAmountSpent) / totalNumMonths : 0.00;
     const totalRestaurant = Object.keys(reportDataJson).length - 4;
-    const avgMonthlyOrder = Math.ceil(totalOrders/totalNumMonths);
+    const avgMonthlyOrder = totalNumMonths > 0 ? Math.ceil(totalOrders/totalNumMonths) : 0.00;
     const yearsArray = Object.keys(reportDataJson['years']);
     
     let mostExpensiveMonth = "NaN";
